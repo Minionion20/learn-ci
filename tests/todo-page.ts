@@ -4,12 +4,11 @@ export class TodoPage {
   constructor(private page: Page) {}
 
   async goto() {
-    await this.page.goto('http://localhost:3000'); // Adjust URL as needed
+    await this.page.goto('http://google.com'); // Adjust URL as needed
   }
 
   async addToDo(text: string) {
-    await this.page.fill('input[placeholder="Add a todo"]', text); // Adjust selector
-    await this.page.press('input', 'Enter');
+    await this.page.fill('#APjFqb', text); // Adjust selector
   }
 
   async removeAll() {

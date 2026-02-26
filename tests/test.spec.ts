@@ -17,7 +17,7 @@ export const test = base.extend<MyFixtures>({
     await todoPage.addToDo('item2');
 
     // Use the fixture value in the test.
-    // await use(todoPage);
+    await use(todoPage);
 
     // Clean up the fixture.
     await todoPage.removeAll();

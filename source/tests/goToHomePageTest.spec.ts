@@ -1,33 +1,31 @@
 import { test as base, expect } from '@playwright/test';
-import { TodoPage } from './todo-page.ts';
+import { HomePage } from '../pages/HomePage';
 
 // Declare the types of your fixtures.
 type MyFixtures = {
-  todoPage: TodoPage;
+  homePage: HomePage;
 };
 
 // Extend base test by providing "todoPage" and "settingsPage".
 // This new "test" can be used in multiple test files, and each of them will get the fixtures.
 export const test = base.extend<MyFixtures>({
-  todoPage: async ({ page }, use) => {
+  homePage: async ({ page }, use) => {
     // Set up the fixture.
-    const todoPage = new TodoPage(page);
-    await todoPage.goto();
-    await todoPage.addToDo('item1');
-    await todoPage.addToDo('item2');
+    const homePage = new HomePage(page);
+    await homePage.goto();
 
     // Use the fixture value in the test.
-    await use(todoPage);
+    await use(homePage);
 
     // Clean up the fixture.
-    await todoPage.removeAll();
+    await homePage.removeAll();
   },
 });
 export { expect } from '@playwright/test';
 
-test('should have 2 items in the list', async ({ todoPage }) => {
+test('should go to the home page', async ({ homePage, page }) => {
   // Use the fixture value in the test.
-  const count = await todoPage.addToDo("item");
+  const count = await homePage.addToDo("item");
   expect(count).toBe(2);
 }
 );
